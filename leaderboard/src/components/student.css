@@ -1,0 +1,74 @@
+.student {
+	width: 700px;
+	margin: auto;
+	display: block;
+	margin-bottom: 30px;
+	margin-top: 10px;
+}
+.left {
+	width: 60%;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: left;
+}
+.right {
+	width: 40%;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: right;
+}
+h2.studentName {
+	margin: 0;
+	padding: 0;
+}
+p.uniName {
+	margin: 0;
+	padding: 0;
+}
+.score {
+	font-size: 30px;
+	font-weight: bold;
+	color: green;
+}
+button.minusBtn {
+	border: none;
+	background: red;
+	color: white;
+	border-radius: 100px;
+	height: 20px;
+	width: 20px;
+	line-height: 16px;
+	text-align: center;
+	position: relative;
+	top: -7px;
+	left: -3px;
+}
+button.minusBtn:hover {
+	background: firebrick;
+}
+button.addBtn {
+	border: none;
+	background: blue;
+	color: white;
+	border-radius: 100px;
+	height: 20px;
+	width: 20px;
+	line-height: 16px;
+	text-align: center;
+	position: relative;
+	top: -7px;
+	left: 5px;
+}
+button.addBtn:hover {
+	background: blueviolet;
+}
+p.uniName span {
+	background: green;
+	color: white;
+	line-height: 17px;
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 1px 5px;
+	border-radius: 3px;
+}
