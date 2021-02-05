@@ -4,8 +4,7 @@ import TotalIncorrect from "./TotalIncorrect"
 
 const ScoreArea = ({ correct, incorrect }) => {
 	return (
-		<div>
-			<h2>Score Area</h2>
+		<div className="score-wrapper">
 			<TotalCorrect correct={correct} />
 			<TotalIncorrect incorrect={incorrect} />
 		</div>

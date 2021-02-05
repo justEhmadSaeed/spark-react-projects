@@ -35,9 +35,10 @@ export class Questionnaire extends Component {
 		return (
 			<div>
 				<QuizArea
-					handleClick={this.handleClick}
 					isFinished={this.state.isFinished}
 					dataSet={this.state.dataSet[this.state.current]}
+					handleClick={this.handleClick}
+					correct={this.state.correct}
 				/>
 				<ScoreArea
 					correct={this.state.correct}

@@ -1,11 +1,7 @@
 import React from "react"
 
 const Question = ({ dataSet }) => {
-	return (
-		<div>
-			<p>{dataSet.question}</p>
-		</div>
-	)
+	return <h1 className="question">{dataSet.question}</h1>
 }
 
 export default Question
