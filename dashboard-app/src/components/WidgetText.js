@@ -5,8 +5,8 @@ const WidgetText = ({ title, value, description }) => {
 		<div className="widgetWrap">
 			<div className="widgetTitle">{title}</div>
 			<div className="widgetValue">
-				<div className="value">{value}</div>
 				<div className="description">{description}</div>
+				<div className="value">{value}</div>
 			</div>
 		</div>
 	)

@@ -3,9 +3,11 @@ import "./dashboard.css"
 import { Col, Row, Container } from "react-bootstrap"
 import WidgetText from "./WidgetText"
 import WidgetBar from "./WidgetBar"
-import WidgetDoughnut from "./WidgetDoughnut"
+import WidgetPie from "./WidgetPie"
 import Dropdown from "react-dropdown"
 import "react-dropdown/style.css"
+import WidgetGuage from "./WidgetGuage"
+import WidgetDoughnut from "./WidgetDoughnut"
 
 const config = {
 	apiKey: "AIzaSyDMu-Vw30ykPPmFT3cXeunzKEi4EahzglI",
@@ -19,15 +21,17 @@ class Dashboard extends Component {
 		this.state = {
 			items: [],
 			dropdownOptions: [],
-			selectedValue: null,
-			organicSource: null,
-			directSource: null,
-			referralSource: null,
-			pageViews: null,
-			users: null,
-			newUsers: null,
+			selectedValue: 0,
+			organicSource: 0,
+			directSource: 0,
+			referralSource: 0,
+			pageViews: 0,
+			users: 0,
+			newUsers: 0,
 			sourceArr: [],
 			usersArr: [],
+			bounceRate: 0,
+			sessionArr: [],
 		}
 	}
 	getData = (arg) => {
@@ -41,6 +45,8 @@ class Dashboard extends Component {
 		let newUsers = 0
 		let sourceArr = []
 		let usersArr = []
+		let bounceRate = 0
+		let sessionArr = []
 
 		arr.forEach((item) => {
 			if (arg === item["month"]) {
@@ -50,6 +56,7 @@ class Dashboard extends Component {
 				pageViews = item.page_views
 				users = item.users
 				newUsers = item.new_users
+				bounceRate = item.bounce_rate
 				sourceArr.push(
 					{
 						label: "Organic Source",
@@ -74,6 +81,16 @@ class Dashboard extends Component {
 						value: item.new_users,
 					}
 				)
+				sessionArr.push(
+					{
+						label: "Number of Sessions",
+						value: item.number_of_sessions_per_users,
+					},
+					{
+						label: "Page Per Session",
+						value: item.page_per_session,
+					}
+				)
 			}
 		})
 
@@ -87,6 +104,8 @@ class Dashboard extends Component {
 				newUsers,
 				sourceArr,
 				usersArr,
+				bounceRate,
+				sessionArr,
 			},
 			() => {
 				console.log(this.state.organicSource)
@@ -132,13 +151,14 @@ class Dashboard extends Component {
 				)
 			})
 	}
-
 	render() {
 		return (
 			<div>
 				<Container fluid>
 					<Row className="TopHeader">
-						<Col>Dashboard</Col>
+						<Col>
+							<h1>Dashboard</h1>
+						</Col>
 						<Col>
 							<Dropdown
 								options={this.state.dropdownOptions}
@@ -154,42 +174,51 @@ class Dashboard extends Component {
 						<Col>
 							<WidgetText
 								title="Organic Source"
+								description="Organic Source Stats"
 								value={this.state.organicSource}
 							/>
 						</Col>
 						<Col>
 							<WidgetText
 								title="Direct Source"
+								description="Direct Source Stats"
 								value={this.state.directSource}
 							/>
 						</Col>
 						<Col>
 							<WidgetText
 								title="Referral Source"
+								description="Referral Source Stats"
 								value={this.state.referralSource}
 							/>
 						</Col>
 						<Col>
-							<WidgetText title="Page Views" value={this.state.pageViews} />
+							<WidgetText
+								title="Page Views"
+								description="Page View Stats"
+								value={this.state.pageViews}
+							/>
 						</Col>
 					</Row>
 					<Row>
-						{/* <Col>
-							<WidgetText title="Users" value={this.state.users} />
+						<Col>
+							<WidgetPie title="Users Comparison" data={this.state.usersArr} />
 						</Col>
 						<Col>
-							<WidgetText title="New Users" value={this.state.newUsers} />
-						</Col> */}
+							<WidgetGuage title="Bounce Rate" value={this.state.bounceRate} />
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<WidgetDoughnut
+								title="Session Comparison"
+								data={this.state.sessionArr}
+							/>
+						</Col>
 						<Col>
 							<WidgetBar
 								title="Source Comparison"
 								data={this.state.sourceArr}
-							/>
-						</Col>
-						<Col>
-							<WidgetDoughnut
-								title="Users Comparison"
-								data={this.state.usersArr}
 							/>
 						</Col>
 					</Row>

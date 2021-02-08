@@ -5,16 +5,17 @@ import Chart from "fusioncharts/fusioncharts.charts"
 import FusionTheme from "fusioncharts/themes/fusioncharts.theme.fusion"
 ReactFC.fcRoot(FusionCharts, Chart, FusionTheme)
 
-const WidgetBar = ({ title, data }) => {
+const WidgetPie = ({ title, data }) => {
 	const chartConfigs = {
-		type: "bar2d", // The chart type
+		type: "pie2d", // The chart type
 		width: "90%", // Width of the chart
 		height: "300", // Height of the chart
 		dataFormat: "json", // Data type
 		dataSource: {
 			chart: {
-				bgColor: "#1F335A",
+				caption: title, //Set the chart caption
 				theme: "fusion", //Set the theme for your chart
+				bgColor: "#1F335A",
 			},
 			data: data,
 		},
@@ -29,4 +30,4 @@ const WidgetBar = ({ title, data }) => {
 	)
 }
 
-export default WidgetBar
+export default WidgetPie
